@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var produtos = []
+        function adicionar_produto (){
+            var nome_produto = prompt("Nome do produto que deseja adicionar: ");
+            var codigo_produto = Number(prompt("Código do produto: "));
+            var preco_produto = Number(prompt("Preço do produto: "));
+            produtos.push({
+                nome: nome_produto,
+                codigo: codigo_produto,
+                preco: preco_produto,
+            });
+        }
+        
+        function visualizar_produtos (){
+            var exibir_produtos = [];
+            for (var i = 0; i < produtos.length; i++) {
+                exibir_produtos.push(produtos[i].nome);
+            }
+            alert(exibir_produtos);
+        }
+
+        function buscar_produtos (){
+            var codigo_busca = Number(prompt("Código para busca: "))
+            var confirm = false
+            var posicao
+            for(var i = 0; i < produtos.length; i++){
+                if (codigo_busca == produtos[i].codigo){
+                    posicao = i
+                    confirm = true
+                    break
+                }
+            }
+            if (confirm == true){
+                alert("Nome do produto: " + produtos[posicao].nome + "\n" + "Código do produto: " + produtos[posicao].codigo + "\n" +
+                "Preço do produto: " + produtos[posicao].preco)
+            }else{
+                alert("Produto não encontrado")
+            }
+            
+        }
+
+        function atualizar_produtos (){
+            var codigo_atualizar = Number(prompt("Código do produto à ser atualizado: "))
+            var confirm = false
+            var posicao
+            for(var i = 0; i < produtos.length; i++){
+                if (codigo_atualizar == produtos[i].codigo){
+                    posicao = i
+                    confirm = true
+                    break
+                }
+            }
+            if (confirm == true){
+                var resp = prompt("1-Nome\n2-Código\n3-Preço\nQual informação será atualizada?");
+                    if (resp == "1") {
+                        var nome_novo = prompt("Novo nome do produto: ");
+                        produtos[posicao].nome = nome_novo;
+                    }else if (resp == "2"){
+                        var codigo_novo = prompt("Novo código do produto: ");
+                        produtos[posicao].codigo = codigo_novo;
+                    }else if (resp == "3"){
+                        var preco_novo = prompt("Novo preço do produto: ");
+                        produtos[posicao].preco = preco_novo;
+                    }
+                    }else{
+                    alert("Produto não encontrado")
+                }
+            }
+        
+
+        function excluir_produto (){
+            var codigo_excluir = Number(prompt("Código do produto à ser excluído: "))
+            var confirm = false
+            var posicao
+            for(var i = 0; i < produtos.length; i++){
+                if (codigo_excluir == produtos[i].codigo){
+                    posicao = i
+                    confirm = true
+                    break
+                }
+            }
+            if (confirm == true){
+                produtos.splice(i, 1)
+                    alert("Produto excluído")
+            }else{
+                alert("Produto não encontrado")
+            }
+
+        }
+      var opcao = prompt(
+        "1-Adicionar\n 2-Visualizar\n 3-Buscar\n 4-Atualizar\n 5-Excluir\n 0-Sair\n Qual opção deseja executar?\n "
+      );
+      do {
+        if(opcao == "0"){
+            break
+        }else if (opcao == "1") {
+            adicionar_produto();
+        }else if (opcao == "2") {
+            visualizar_produtos();
+        }else if(opcao == "3"){
+            buscar_produtos();
+        }else if(opcao == "4"){
+            atualizar_produtos();
+        }else if(opcao == "5"){
+            excluir_produto();
+        }else{
+            alert("Opção inválida")
+        }
+        var opcao = prompt(
+          "1-Adicionar\n 2-Visualizar\n 3-Buscar\n 4-Atualizar\n 5-Excluir\n 0-Sair\n Qual opção deseja executar?\n "
+        );
+        } while (opcao != 0)
+    </script>
+  </body>
+</html>
